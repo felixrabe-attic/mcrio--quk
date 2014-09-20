@@ -1,8 +1,8 @@
 minimist = require 'minimist'
 fs = require 'fs'
-pathJoin = require('path').join
+{join, resolve} = require('path')
 require('mcrio-stdlib').monkey()
-resolve = require 'resolve-path'
+resolvePath = require 'resolve-path'
 
 module.exports = ->
   # CONFIGURATION
@@ -22,14 +22,14 @@ module.exports = ->
   app = express()
 
   localRootPath = process.cwd()
-  localBowerPath = pathJoin localRootPath, 'bower_components'
+  localBowerPath = join localRootPath, 'bower_components'
 
-  installationRootPath = __dirname
-  installationBowerPath = pathJoin installationRootPath, 'bower_components'
+  installationRootPath = resolve __dirname, '..'
+  installationBowerPath = join installationRootPath, 'bower_components'
 
   # **/index.html
   app.use (req, res, next) ->
-    path = resolve localRootPath, req.path.slice 1
+    path = resolvePath localRootPath, req.path.slice 1
     if path.endsWith '/'
       path = path.slice 0, -1
     indexFilePath = path + '/index.html'
@@ -72,7 +72,7 @@ module.exports = ->
 convertOnTheFly = (basePath, ext, conv) ->
   (req, res, next) ->
     return next() unless req.method in ['GET', 'HEAD']
-    filePath = resolve basePath, req.path.slice 1
+    filePath = resolvePath basePath, req.path.slice 1
     return next() unless filePath.endsWith(ext)
     fs.exists filePath, (doesExist) ->
       return next() unless doesExist
