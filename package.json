@@ -1,0 +1,38 @@
+{
+  "name": "quk",
+  "version": "0.0.0",
+  "description": "QUicK webserver",
+  "bin": {
+    "quk": "./quk"
+  },
+  "scripts": {
+    "prepublish": "./node_modules/.bin/jake"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcrio/quk.git"
+  },
+  "keywords": [
+    "quick",
+    "web",
+    "server"
+  ],
+  "author": "Felix Rabe <felix@rabe.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcrio/quk/issues"
+  },
+  "homepage": "https://github.com/mcrio/quk",
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "express": "^4.8.4",
+    "less": "^1.7.4",
+    "mcrio-stdlib": "^0.2.1",
+    "minimist": "^1.1.0",
+    "resolve-path": "^1.0.0"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.8.0",
+    "jake": "^8.0.9"
+  }
+}
